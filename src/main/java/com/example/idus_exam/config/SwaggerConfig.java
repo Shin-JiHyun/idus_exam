@@ -32,7 +32,7 @@ import org.springframework.context.annotation.Configuration;
             license.setName("{Application}");
 
             return new Info()
-                    .title("Pill-Mate API Document")
+                    .title("IDUS API Document")
                     .description("Pill-Mate Server's API document.")
                     .version("v0.0.1")
                     .license(license);
