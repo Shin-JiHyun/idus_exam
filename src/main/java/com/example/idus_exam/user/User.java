@@ -2,8 +2,6 @@ package com.example.idus_exam.user;
 
 import com.example.idus_exam.order.Orders;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
-import  com.example.idus_exam.user.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
