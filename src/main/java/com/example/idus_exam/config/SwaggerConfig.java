@@ -18,7 +18,6 @@ import org.springframework.context.annotation.Configuration;
         @Bean
         public OpenAPI getOpenApi() {
             Server server = new Server().url("/");
-//            Server server = new Server().url("/");
             return new OpenAPI()
                     .info(getSwaggerInfo())
                     .components(getComponents());
