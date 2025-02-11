@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -28,6 +29,11 @@ public class UserController {
 
         tokenBlackListService.blacklistToken(token); // 토큰 블랙리스트 저장
         return ResponseEntity.ok("Logged out successfully");
+    }
+    @GetMapping("/detail")
+    public ResponseEntity<UserDto.UserResponse> detail(@AuthenticationPrincipal User user) {
+       UserDto.UserResponse dto =  userService.getUserDetail(user);
+       return ResponseEntity.ok(dto);
     }
 
 }

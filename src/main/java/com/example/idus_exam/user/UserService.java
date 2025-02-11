@@ -34,4 +34,9 @@ public class UserService implements UserDetailsService {
 
         return null;
     }
+
+    public UserDto.UserResponse getUserDetail(User user) {
+       User user1 =  userRepository.findByEmail(user.getEmail()).orElseThrow();
+        return UserDto.UserResponse.from(user1);
+    }
 }

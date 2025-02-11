@@ -4,7 +4,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import jakarta.annotation.Nullable;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 public class UserDto {
@@ -74,6 +77,27 @@ public class UserDto {
                     .email(email)
                     .gender(gender)
                     .role(role)
+                    .build();
+        }
+    }
+
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    @Getter
+    public static class UserResponse {
+        private String username;
+        private String nickname;
+        private int phone;
+        private String email;
+        private String gender;
+        public static UserResponse from (User user){
+            return UserResponse.builder()
+                    .username(user.getUsername())
+                    .nickname(user.getNickname())
+                    .phone(user.getPhone())
+                    .email(user.getEmail())
+                    .gender(user.getGender())
                     .build();
         }
     }
