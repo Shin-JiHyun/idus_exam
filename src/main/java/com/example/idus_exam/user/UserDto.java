@@ -2,7 +2,6 @@ package com.example.idus_exam.user;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 import jakarta.annotation.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -93,7 +92,7 @@ public class UserDto {
         private String gender;
         public static UserResponse from (User user){
             return UserResponse.builder()
-                    .username(user.getUsername())
+                    .username(user.getuserName())
                     .nickname(user.getNickname())
                     .phone(user.getPhone())
                     .email(user.getEmail())

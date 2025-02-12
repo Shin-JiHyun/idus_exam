@@ -1,6 +1,7 @@
 package com.example.idus_exam.user;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ public class UserController {
 
     @Operation(summary = "회원가입", description = "회원가입 api입니다." )
     @PostMapping("/signup")
-    public ResponseEntity<User> signup(@RequestBody UserDto.SignupRequest signupRequest) {
+    public ResponseEntity<User> signup(@Valid @RequestBody UserDto.SignupRequest signupRequest) {
         userService.create(signupRequest);
         return ResponseEntity.ok().build();
     }
@@ -24,7 +25,7 @@ public class UserController {
     @PostMapping("/logout")
     public ResponseEntity<?> logout(@CookieValue(value = "ATOKEN", required = false) String token) {
         if (token == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No token found");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그아웃 되었습니다.");
         }
 
         tokenBlackListService.blacklistToken(token); // 토큰 블랙리스트 저장
