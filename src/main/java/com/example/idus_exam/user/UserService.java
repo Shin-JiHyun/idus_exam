@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -39,4 +40,22 @@ public class UserService implements UserDetailsService {
        User user1 =  userRepository.findByEmail(user.getEmail()).orElseThrow();
         return UserDto.UserResponse.from(user1);
     }
+    @Transactional(readOnly = true)
+    public Long getUserIdx(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow();
+        return user.getIdx();
+    }
+
+    @Transactional(readOnly = true)
+    public List<User> getUsersByName(String name) {
+       List<User> user = userRepository.findByUsernameContaining(name);
+        return user;
+    }
+    @Transactional(readOnly = true)
+    public Long getUserIdxByEmail(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow();
+        return user.getIdx();
+    }
+
+
 }
